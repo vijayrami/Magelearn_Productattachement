@@ -1,0 +1,14 @@
+<?php 
+$product = $block->getProduct();
+//$product_attachment = $product->getAttachment();
+$product_attachment = $block->getProductAttachment();
+?>
+<?php if(!empty($product_attachment)) : ?>
+<div class="product-downloads s-wysiwyg">
+	<ul>
+		<li>
+			<a href="<?php echo $block->getAttachmentUrl(); ?>" target="_blank" download><?php echo $product_attachment; ?></a>
+		</li>
+	</ul>
+</div>
+<?php endif; ?>
