@@ -9,11 +9,11 @@ class Uninstall implements UninstallInterface
 {
 	public function uninstall(SchemaSetupInterface $setup, ModuleContextInterface $context)
 	{
-		$installer = $setup;
-		$installer->startSetup();
+		$this->moduleDataSetup->getConnection()->startSetup();
+		/** @var EavSetup $eavSetup */
+		$eavSetup = $this->eavSetupFactory->create(['setup' => $this->moduleDataSetup]);
+		$eavSetup->removeAttribute(\Magento\Catalog\Model\Product::ENTITY, 'attachment');
 
-		$installer->getConnection()->dropTable($installer->getTable('mageplaza_helloworld_post'));
-
-		$installer->endSetup();
+		$this->moduleDataSetup->getConnection()->endSetup();
 	}
 }
