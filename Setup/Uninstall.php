@@ -1,22 +1,35 @@
 <?php
 namespace Magelearn\Productattachement\Setup;
 
-use Magento\Framework\Setup\UninstallInterface;
-use Magento\Framework\Setup\SchemaSetupInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
+use Magento\Framework\Setup\SchemaSetupInterface;
+use Magento\Framework\Setup\UninstallInterface as UninstallInterface;
+use Magento\Eav\Setup\EavSetupFactory;
+use Magento\Framework\Setup\ModuleDataSetupInterface;
 
 class Uninstall implements UninstallInterface
 {
 	/**
-     	* @var EavSetupFactory
-    	 */
-    	protected $_eavSetupFactory;
+	* EAV setup factory
+	*
+	* @var EavSetupFactory
+	*/
+	private $_eavSetupFactory;
 
-    	public function __construct(
-		EavSetupFactory $eavSetupFactory
-    	) {
-		$this->_eavSetupFactory = $eavSetupFactory;
-    	}
+	private $_mDSetup;
+	/**
+	* Init
+	*
+	* @param EavSetupFactory $eavSetupFactory
+	*/
+	public function __construct(
+		EavSetupFactory $eavSetupFactory,
+		ModuleDataSetupInterface $mDSetup
+	)
+	{
+		$this->eavSetupFactory = $eavSetupFactory;
+		$this->moduleDataSetup = $mDSetup;
+	}
 	
 	public function uninstall(SchemaSetupInterface $setup, ModuleContextInterface $context)
 	{
