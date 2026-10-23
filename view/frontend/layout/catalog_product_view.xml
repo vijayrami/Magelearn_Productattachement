@@ -9,11 +9,14 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="product.info.details">
-            <block class="Magelearn\Productattachement\Block\Product\Downloads" name="attachment.tab" as="attachment"
+            <block class="Magento\Framework\View\Element\Template" name="attachment.tab" as="attachment"
                    template="Magelearn_Productattachement::downloads.phtml" group="detailed_info">
-                   <arguments>
+                <arguments>
                 	<argument translate="true" name="title" xsi:type="string">Product Attachment</argument>
-             </arguments>
+                    <argument name="view_model" xsi:type="object">
+                        Magelearn\Productattachement\ViewModel\Attachment
+                    </argument>
+                </arguments>
             </block>
         </referenceBlock>
     </body>
